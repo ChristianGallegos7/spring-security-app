@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.seguridad.dto.SaveCategory;
 import com.example.seguridad.dto.SaveProduct;
 import com.example.seguridad.persistence.entity.Category;
 import com.example.seguridad.persistence.entity.Product;
@@ -39,10 +40,10 @@ public class CategoryController {
 
     }
 
-    @GetMapping("/{productId}")
-    public ResponseEntity<Category> findOneById(@PathVariable Long productId) {
+    @GetMapping("/{categoryId}")
+    public ResponseEntity<Category> findOneById(@PathVariable Long categoryId) {
 
-        Optional<Category> category = categoryService.findOneById(productId);
+        Optional<Category> category = categoryService.findOneById(categoryId);
 
         if (category.isPresent()) {
             return ResponseEntity.ok(category.get());
@@ -59,20 +60,20 @@ public class CategoryController {
         return ResponseEntity.status(HttpStatus.CREATED).body(category);
     }
 
-    @PutMapping("/{productId}")
-    public ResponseEntity<Product> updateOneById(
-            @PathVariable Long productId,
-            @RequestBody @Valid SaveProduct saveProduct) {
+    @PutMapping("/{categoryId}")
+    public ResponseEntity<Category> updateOneById(
+            @PathVariable Long categoryId,
+            @RequestBody @Valid SaveCategory saveProduct) {
 
-        Product product = categoryService.updateOneById(productId, saveProduct);
+        Category category = categoryService.updateOneById(categoryId, saveProduct);
 
-        return ResponseEntity.ok(product);
+        return ResponseEntity.ok(category);
     }
 
-    @PutMapping("/{productId}/disabled")
-    public ResponseEntity<Product> disabledOneById(@PathVariable Long productId) {
-        Product product = categoryService.disabledOneById(productId);
+    @PutMapping("/{categoryId}/disabled")
+    public ResponseEntity<Category> disabledOneById(@PathVariable Long categoryId) {
+        Category category = categoryService.disabledOneById(categoryId);
 
-        return ResponseEntity.ok(product);
+        return ResponseEntity.ok(category);
     }
 }
