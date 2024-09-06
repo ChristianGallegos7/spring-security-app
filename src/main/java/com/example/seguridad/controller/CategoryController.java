@@ -15,9 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.seguridad.dto.SaveCategory;
-import com.example.seguridad.dto.SaveProduct;
 import com.example.seguridad.persistence.entity.Category;
-import com.example.seguridad.persistence.entity.Product;
 import com.example.seguridad.service.CategoryService;
 
 import jakarta.validation.Valid;
